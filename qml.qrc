@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Main_menu.qml</file>
+        <file>Main_menu_btn.qml</file>
+        <file>Translator_page.qml</file>
+        <file>Back_btn.qml</file>
+        <file>back_btn_icon.svg</file>
+        <file>Translator_menu_bar.qml</file>
+        <file>Menu_bar_item.qml</file>
+        <file>settings_btn_icon.svg</file>
+        <file>Menu_item.qml</file>
+        <file>Block_delegate.qml</file>
+        <file>my_files_icon.svg</file>
+    </qresource>
+</RCC>
