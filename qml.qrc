@@ -12,5 +12,10 @@
         <file>Menu_item.qml</file>
         <file>Block_delegate.qml</file>
         <file>my_files_icon.svg</file>
+        <file>File_dialog_page.qml</file>
+        <file>Words_page.qml</file>
+        <file>Word_delegate.qml</file>
+        <file>Local_file_delegate.qml</file>
+        <file>Langs_page.qml</file>
     </qresource>
 </RCC>

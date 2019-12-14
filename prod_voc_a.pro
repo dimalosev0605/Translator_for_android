@@ -30,7 +30,12 @@ SOURCES += \
     blocks_data_model.cpp \
     block.cpp \
     yandex_api_connection.cpp \
-    yandex_api_parser.cpp
+    yandex_api_parser.cpp \
+    words_data_model.cpp \
+    word.cpp \
+    basefilesdatamodel.cpp \
+    localfilesdatamodel.cpp \
+    filemanager.cpp
 
 RESOURCES += qml.qrc
 
@@ -51,7 +56,12 @@ HEADERS += \
     blocks_data_model.h \
     block.h \
     yandex_api_connection.h \
-    yandex_api_parser.h
+    yandex_api_parser.h \
+    words_data_model.h \
+    word.h \
+    basefilesdatamodel.h \
+    localfilesdatamodel.h \
+    filemanager.h
 
 contains(ANDROID_TARGET_ARCH,armeabi-v7a) {
     ANDROID_EXTRA_LIBS = \

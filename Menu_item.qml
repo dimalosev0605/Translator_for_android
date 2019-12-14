@@ -5,7 +5,7 @@ Rectangle {
     id: root
     width: file_menu.width
     height: 30
-    color: mouse_area.pressed ? "#00ff00" : "white"
+    color: enabled ? mouse_area.pressed ? "#00ff00" : "white" : "#cfcfcf"
     border.width: 1
     border.color: "#000000"
 
