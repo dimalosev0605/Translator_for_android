@@ -1,16 +1,12 @@
-import QtQuick 2.9
+import QtQuick 2.11
 import QtQuick.Controls 2.4
 
 Rectangle {
-    id: root
+    property alias text: text.text
+    property alias mouse_area: mouse_area
+    color: enabled ? mouse_area.pressed ? "#00ff00" : "white" : "#cfcfcf"
     border.width: 1
     border.color: "black"
-    color: enabled ? mouse_area.pressed ? "#00ff00" : "white" : "#cfcfcf"
-    width: 100
-    height: 40
-
-    property alias mouse_area: mouse_area
-    property alias text: text.text
 
     Text {
         id: text
@@ -20,8 +16,8 @@ Rectangle {
         width: parent.width
         height: parent.height
         fontSizeMode: Text.Fit
-        minimumPointSize: 5
-        font.pointSize: 15  // was 10
+        minimumPointSize: 3
+        font.pointSize: 10
         elide: Text.ElideRight
         wrapMode: Text.WordWrap
     }
@@ -29,5 +25,4 @@ Rectangle {
         id: mouse_area
         anchors.fill: parent
     }
-
 }

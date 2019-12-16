@@ -4,16 +4,6 @@ QT += network
 CONFIG += c++11
 
 
-#LIBS += "C:/Users/dimal/Desktop/dll/android_ssl_from_github/libcrypto.so"
-#LIBS += "C:/Users/dimal/Desktop/dll/android_ssl_from_github/libssl.so"
-#LIBS += "C:/Users/dimal/Desktop/dll/android_ssl/libcrypto.so"
-#LIBS += "C:/Users/dimal/Desktop/dll/android_ssl/libssl.so"
-
-#LIBS += "C:/Users/dimal/Desktop/dll/android_ssl_2/libssl.a"
-#LIBS += "C:/Users/dimal/Desktop/dll/android_ssl_2/libssl.so"
-#LIBS += "C:/Users/dimal/Desktop/dll/android_ssl_2/libcrypto.a"
-#LIBS += "C:/Users/dimal/Desktop/dll/android_ssl_2/libcrypto.so"
-
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked deprecated (the exact warnings
 # depend on your compiler). Please consult the documentation of the
@@ -35,7 +25,11 @@ SOURCES += \
     word.cpp \
     basefilesdatamodel.cpp \
     localfilesdatamodel.cpp \
-    filemanager.cpp
+    filemanager.cpp \
+    settings.cpp \
+    client.cpp \
+    jsonhelper.cpp \
+    remotefilesdatamodel.cpp
 
 RESOURCES += qml.qrc
 
@@ -61,7 +55,11 @@ HEADERS += \
     word.h \
     basefilesdatamodel.h \
     localfilesdatamodel.h \
-    filemanager.h
+    filemanager.h \
+    settings.h \
+    client.h \
+    jsonhelper.h \
+    remotefilesdatamodel.h
 
 contains(ANDROID_TARGET_ARCH,armeabi-v7a) {
     ANDROID_EXTRA_LIBS = \

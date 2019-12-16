@@ -1,6 +1,7 @@
 import QtQuick 2.11
 import QtQuick.Controls 2.4
 import LocalFilesDataModel_qml 1.0
+import Words_data_model_qml 1.0
 
 Item {
     id: root
@@ -14,6 +15,18 @@ Item {
     }
     LocalFilesDataModel {
         id: local_files_data_model
+    }
+    Words_data_model {
+        id: words_data_model
+        is_save: false
+    }
+    Component {
+        id: words_page_comp
+        Words_page {
+            id: words_page
+            interface_flag: 2
+            Component.onDestruction: print("Destroying words_page.")
+        }
     }
 
     Rectangle {
@@ -35,7 +48,7 @@ Item {
                 spacing: 5
                 clip: true
                 delegate: Local_file_delegate {
-                    interface_flag: 1
+                    interface_flag: 2
                     file_name: String(model.file_name)
                     modified_date: String(model.modified_date)
                 }
@@ -83,13 +96,7 @@ Item {
             onClicked: {
                 if(file_name_field.text === "") return
                 if(local_files_data_model.create_file(file_name_field.text)) {
-                    show_hide_line_edits_btn.visible = true
-                    menu_bar.open_menu_item.enabled = false
-                    menu_bar.save_menu_item.enabled = true
-                    menu_bar.show_words_item.enabled = true
-                    words_data_model.set_file_name(file_name_field.text)
-                    words_data_model.open_file()
-                    stack_view.pop()
+                    file_name_field.text = ""
                 }
             }
         }

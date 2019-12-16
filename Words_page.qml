@@ -4,6 +4,8 @@ import QtQuick.Controls 2.4
 Item {
     id: words_page
 
+    property int interface_flag
+
     Back_btn {
         id: back_btn
         anchors.left: parent.left
@@ -25,7 +27,9 @@ Item {
             anchors.fill: parent
             spacing: 5
             model: words_data_model
+            clip: true
             delegate: Word_delegate {
+                interface_flag: words_page.interface_flag
                 word_and_transcription: String(model.word + '\n' + model.transcription)
                 means: String(model.means)
                 syns: String(model.syns)

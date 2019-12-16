@@ -32,6 +32,7 @@ Item {
         id: words_page_comp
         Words_page {
             id: words_page
+            interface_flag: 1
             Component.onDestruction: print("Destroying words_page.")
         }
     }

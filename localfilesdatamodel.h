@@ -16,7 +16,6 @@ public slots:
     void delete_file(int index);
     void update_data();
     bool create_file(const QString& file_name);
-    QString get_file_name(int index);
 };
 
 #endif // LOCALFILESDATAMODEL_H

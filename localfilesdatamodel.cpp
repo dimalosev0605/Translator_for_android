@@ -52,13 +52,6 @@ bool LocalFilesDataModel::create_file(const QString &file_name)
     return false;
 }
 
-QString LocalFilesDataModel::get_file_name(int index)
-{
-    if(index < 0 || index >= files.size()) return QString("");
-    return files[index].first;
-}
-
-
 
 
 

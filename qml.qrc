@@ -17,5 +17,10 @@
         <file>Word_delegate.qml</file>
         <file>Local_file_delegate.qml</file>
         <file>Langs_page.qml</file>
+        <file>My_files_page.qml</file>
+        <file>My_account_page.qml</file>
+        <file>Account_page_btn.qml</file>
+        <file>Cloud_page.qml</file>
+        <file>Remote_file_delegate.qml</file>
     </qresource>
 </RCC>

@@ -9,6 +9,11 @@ Item {
     property alias file_name: file_name_text.text
     property alias modified_date: modified_date_text.text
 
+    // 1 - interface in translator_page -> file_dialog
+    // 2 - interface in my_files_page
+    // 3 - interface in cloud_page
+    property int interface_flag: 1
+
     Row {
         id: row
         anchors.fill: parent
@@ -87,19 +92,35 @@ Item {
                 font.pointSize: 10
                 elide: Text.ElideRight
                 wrapMode: Text.WordWrap
-                text: "Open"
+                text: interface_flag === 3 ? "Upload" : "Open"
             }
             MouseArea {
                 id: open_btn_m_area
                 anchors.fill: parent
                 onClicked: {
-                    show_hide_line_edits_btn.visible = true
-                    menu_bar.open_menu_item.enabled = false
-                    menu_bar.save_menu_item.enabled = true
-                    menu_bar.show_words_item.enabled = true
-                    words_data_model.set_file_name(local_files_data_model.get_file_name(index))
-                    words_data_model.open_file()
-                    stack_view.pop()
+                    if(interface_flag === 1) {
+                        show_hide_line_edits_btn.visible = true
+                        menu_bar.open_menu_item.enabled = false
+                        menu_bar.save_menu_item.enabled = true
+                        menu_bar.show_words_item.enabled = true
+                        words_data_model.set_file_name(local_files_data_model.get_file_name(index))
+                        words_data_model.open_file()
+                        stack_view.pop()
+                    }
+                    if(interface_flag === 2) {
+                        words_data_model.set_file_name(local_files_data_model.get_file_name(index))
+                        words_data_model.open_file()
+                        stack_view.push(words_page_comp)
+                    }
+                    if(interface_flag === 3) {
+                        if(busy_indicator.visible) return
+                        if(client.upload_file(local_files_model.get_file_name(index))) {
+                            info_lbl.text = "Uploading..."
+                            info_lbl.visible = true
+                            busy_indicator.visible = true
+                            pulsing_anim.start()
+                        }
+                    }
                 }
             }
         }
@@ -126,7 +147,13 @@ Item {
                 id: delete_btn_m_area
                 anchors.fill: parent
                 onClicked: {
-                    local_files_data_model.delete_file(index)
+                    if(interface_flag === 3) {
+                        // господь прости меня
+                        local_files_model.delete_file(index)
+                    }
+                    else {
+                        local_files_data_model.delete_file(index)
+                    }
                 }
             }
         }

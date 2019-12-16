@@ -2,7 +2,10 @@
 #include <QQmlApplicationEngine>
 #include "blocks_data_model.h"
 #include "localfilesdatamodel.h"
+#include "remotefilesdatamodel.h"
 #include "words_data_model.h"
+#include "settings.h"
+#include "client.h"
 
 int main(int argc, char *argv[])
 {
@@ -12,7 +15,10 @@ int main(int argc, char *argv[])
 
     qmlRegisterType<Blocks_data_model>("Blocks_data_model_qml", 1, 0, "Blocks_data_model");
     qmlRegisterType<LocalFilesDataModel>("LocalFilesDataModel_qml", 1, 0, "LocalFilesDataModel");
+    qmlRegisterType<RemoteFilesDataModel>("RemoteFilesDataModel_qml", 1, 0, "RemoteFilesDataModel");
     qmlRegisterType<Words_data_model>("Words_data_model_qml", 1, 0, "Words_data_model");
+    qmlRegisterType<Settings>("Settings_qml", 1, 0, "Settings");
+    qmlRegisterType<Client>("Client_qml", 1, 0, "Client");
 
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));

@@ -62,6 +62,17 @@ QVariant Words_data_model::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
+bool Words_data_model::get_is_save() const
+{
+    return is_save;
+}
+
+void Words_data_model::set_is_save(bool v)
+{
+    is_save = v;
+    emit is_save_changed();
+}
+
 void Words_data_model::add_word(const QString &w, const QString &tr, const QString &m, const QString &syns)
 {
     beginInsertRows(QModelIndex(), words.size(), words.size());
@@ -77,11 +88,12 @@ void Words_data_model::set_file_name(const QString &name)
 
 Words_data_model::~Words_data_model()
 {
-    save_words();
+    if(is_save) save_words();
 }
 
 void Words_data_model::open_file()
 {
+    if(!words.isEmpty()) words.clear();
     FileManager file_manager;
     QFile file(file_manager.get_file_path(file_name));
     if(file.open(QIODevice::ReadOnly)) {
