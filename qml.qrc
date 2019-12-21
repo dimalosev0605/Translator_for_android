@@ -22,5 +22,8 @@
         <file>Account_page_btn.qml</file>
         <file>Cloud_page.qml</file>
         <file>Remote_file_delegate.qml</file>
+        <file>Test_page.qml</file>
+        <file>Dictation_page.qml</file>
+        <file>Dictation_page_btn.qml</file>
     </qresource>
 </RCC>

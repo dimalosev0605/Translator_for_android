@@ -29,7 +29,8 @@ SOURCES += \
     settings.cpp \
     client.cpp \
     jsonhelper.cpp \
-    remotefilesdatamodel.cpp
+    remotefilesdatamodel.cpp \
+    test_words.cpp
 
 RESOURCES += qml.qrc
 
@@ -59,7 +60,8 @@ HEADERS += \
     settings.h \
     client.h \
     jsonhelper.h \
-    remotefilesdatamodel.h
+    remotefilesdatamodel.h \
+    test_words.h
 
 contains(ANDROID_TARGET_ARCH,armeabi-v7a) {
     ANDROID_EXTRA_LIBS = \

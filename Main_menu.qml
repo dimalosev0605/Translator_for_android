@@ -48,6 +48,18 @@ Item {
             }
         }
         Main_menu_btn {
+            id: test_page_btn
+            text: "Testing"
+            mouse_area.onClicked: stack_view.push(test_page_comp)
+            Component {
+                id: test_page_comp
+                Test_page {
+                    id: test_page
+                    Component.onDestruction: print("Destroying test page.")
+                }
+            }
+        }
+        Main_menu_btn {
             id: cloud_btn
             text: "Cloud"
             enabled: settings.is_auth

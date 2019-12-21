@@ -12,6 +12,7 @@ Item {
     // 1 - interface in translator_page -> file_dialog
     // 2 - interface in my_files_page
     // 3 - interface in cloud_page
+    // 4 - interface in test_page
     property int interface_flag: 1
 
     Row {
@@ -119,6 +120,11 @@ Item {
                             info_lbl.visible = true
                             busy_indicator.visible = true
                             pulsing_anim.start()
+                        }
+                    }
+                    if(interface_flag === 4) {
+                        if(test_words.open_file(local_files_data_model.get_file_name(index))) {
+                            stack_view.push(dictation_page_comp)
                         }
                     }
                 }

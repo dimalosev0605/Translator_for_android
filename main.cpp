@@ -6,6 +6,7 @@
 #include "words_data_model.h"
 #include "settings.h"
 #include "client.h"
+#include "test_words.h"
 
 int main(int argc, char *argv[])
 {
@@ -19,6 +20,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<Words_data_model>("Words_data_model_qml", 1, 0, "Words_data_model");
     qmlRegisterType<Settings>("Settings_qml", 1, 0, "Settings");
     qmlRegisterType<Client>("Client_qml", 1, 0, "Client");
+    qmlRegisterType<Test_words>("Test_words_qml", 1, 0, "Test_words");
 
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
