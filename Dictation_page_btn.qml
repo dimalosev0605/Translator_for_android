@@ -31,7 +31,10 @@ Rectangle {
         anchors.fill: parent
         onClicked: {
             if(test_words.get_ran() === idx) {
-                test_words.rand_generator()
+                if(test_words.get_checked())
+                    test_words.rand_generator_2()
+                else
+                    test_words.rand_generator()
                 b_0.text = test_words.get(0)
                 b_1.text = test_words.get(1)
                 b_2.text = test_words.get(2)

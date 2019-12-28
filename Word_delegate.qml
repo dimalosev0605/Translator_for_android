@@ -15,7 +15,19 @@ Rectangle {
 
     // 1 - interface in translator_page
     // 2 - in my_files_page
+    // 4 - in test_page
     property int interface_flag
+
+    color: interface_flag === 4 ? test_words.get_idx(index) ? "#00ff00" : "white" : "white"
+    MouseArea {
+        anchors.fill: parent
+        visible: interface_flag === 4 ? true : false
+        onClicked: {
+            console.log("index = " + index)
+            test_words.set_idx(index)
+            color = test_words.get_idx(index) ? "#00ff00" : "white"
+        }
+    }
 
     Row  {
         Rectangle {
@@ -52,6 +64,7 @@ Rectangle {
             border.color: "black"
             height: root.height
             width: (root.width - idx.width)/ 4
+            color: root.color
             Text {
                 id: word_and_transcripton
                 verticalAlignment: Text.AlignVCenter
@@ -70,6 +83,7 @@ Rectangle {
             border.color: "black"
             height: root.height
             width: (root.width - idx.width)/ 4
+            color: root.color
             Text {
                 id: means
                 verticalAlignment: Text.AlignVCenter
@@ -88,6 +102,7 @@ Rectangle {
             border.color: "black"
             height: root.height
             width: (root.width - idx.width)/ 4
+            color: root.color
             Text {
                 id: syns
                 verticalAlignment: Text.AlignVCenter
@@ -106,6 +121,7 @@ Rectangle {
             border.color: "black"
             height: root.height
             width: (root.width - idx.width) / 4
+            color: root.color
             Text {
                 id: date
                 verticalAlignment: Text.AlignVCenter

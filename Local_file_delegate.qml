@@ -124,7 +124,9 @@ Item {
                     }
                     if(interface_flag === 4) {
                         if(test_words.open_file(local_files_data_model.get_file_name(index))) {
-                            stack_view.push(dictation_page_comp)
+                            words_data_model.set_file_name(local_files_data_model.get_file_name(index))
+                            words_data_model.open_file()
+                            stack_view.push(words_page_comp)
                         }
                     }
                 }

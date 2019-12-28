@@ -5,6 +5,7 @@ Item {
     id: words_page
 
     property int interface_flag
+    // 4 - interface for test page
 
     Back_btn {
         id: back_btn
@@ -12,6 +13,48 @@ Item {
         anchors.top: parent.top
         anchors.leftMargin: 5
         anchors.topMargin: 5
+    }
+    Rectangle {
+        // if interface == 4
+        id: start_btn
+        visible: interface_flag === 4 ? true : false
+        color: mouse_area.pressed ? "#00ff00" : "white"
+        border.width: 1
+        border.color: "black"
+        width: 60
+        height: back_btn.height
+        anchors.right: parent.right
+        anchors.rightMargin: 5
+        anchors.top: parent.top
+        anchors.topMargin: 5
+        Text {
+            id: text
+            anchors.centerIn: parent
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+            width: parent.width
+            height: parent.height
+            fontSizeMode: Text.Fit
+            minimumPointSize: 5
+            font.pointSize: 10
+            elide: Text.ElideRight
+            wrapMode: Text.WordWrap
+            text: "Start"
+        }
+        MouseArea {
+            id: mouse_area
+            anchors.fill: parent
+            onClicked: {
+                if(test_words.get_checked()) {
+                    test_words.prepare()
+                    test_words.rand_generator_2()
+                }
+                else {
+                    test_words.rand_generator()
+                }
+                stack_view.push(dictation_page_comp)
+            }
+        }
     }
 
     ScrollView {

@@ -2,6 +2,7 @@ import QtQuick 2.9
 import QtQuick.Controls 2.4
 import LocalFilesDataModel_qml 1.0
 import Test_words_qml 1.0
+import Words_data_model_qml 1.0
 
 Item {
     id: test_page
@@ -24,6 +25,16 @@ Item {
         Dictation_page {
             id: dictation_page
             Component.onDestruction: print("Destroying dictation page.")
+        }
+    }
+    Words_data_model {
+        id: words_data_model
+    }
+    Component {
+        id: words_page_comp
+        Words_page {
+            id: words_page
+            interface_flag: 4
         }
     }
     Rectangle {
@@ -52,7 +63,6 @@ Item {
             }
         }
     }
-
 }
 
 
