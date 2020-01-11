@@ -1,6 +1,7 @@
 #include "client.h"
 
 const QString Client::host_name = "supernovaexplosion.ddns.net";
+//const QString Client::host_name = "10.123.12.130";
 
 Client::Client(QObject* parent)
     :QObject (parent)

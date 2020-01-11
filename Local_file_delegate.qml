@@ -138,7 +138,8 @@ Item {
             border.color: "black"
             height: root.height
             width: open_btn.width
-            color: delete_btn_m_area.pressed ? "#ff0000" : "white"
+            color: enabled ? delete_btn_m_area.pressed ? "#ff0000" : "white" : "#cfcfcf"
+            enabled: interface_flag === 2 ? true : false
             Text {
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
@@ -155,13 +156,9 @@ Item {
                 id: delete_btn_m_area
                 anchors.fill: parent
                 onClicked: {
-                    if(interface_flag === 3) {
-                        // господь прости меня
-                        local_files_model.delete_file(index)
-                    }
-                    else {
-                        local_files_data_model.delete_file(index)
-                    }
+                    if(interface_flag !== 2) return
+                    // delete only if interface_flag == 2.
+                    local_files_data_model.delete_file(index)
                 }
             }
         }

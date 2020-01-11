@@ -27,7 +27,10 @@ bool Test_words::open_file(const QString &file_name)
 
 QString Test_words::get_qstn() const
 {
-    return qstn.get_syns();
+    if(direction)
+        return qstn.get_syns();
+    else
+        return qstn.get_word() + '\n' + qstn.get_transcription();
 }
 
 int Test_words::get_ran() const
@@ -40,21 +43,28 @@ bool Test_words::get_idx(int index) const
     return idxs[index];
 }
 
-void Test_words::set_idx(int index)
+bool Test_words::set_idx(int index)
 {
     if(idxs[index]) {
         idxs[index] = false;
         checked = false;
+        return false;
     }
     else {
         checked = true;
         idxs[index] = true;
+        return true;
     }
 }
 
 bool Test_words::get_checked() const
 {
     return checked;
+}
+
+int Test_words::get_words_count() const
+{
+    return words.size();
 }
 
 void Test_words::prepare()
@@ -65,9 +75,17 @@ void Test_words::prepare()
     }
 }
 
+void Test_words::change_direction()
+{
+    direction ? direction = false : direction = true;
+}
+
 QString Test_words::get(int index) const
 {
-    return qstns[index].get_word() + '\n' + qstns[index].get_transcription();
+    if(direction)
+        return qstns[index].get_word() + '\n' + qstns[index].get_transcription();
+    else
+        return qstns[index].get_syns();
 }
 
 void Test_words::rand_generator()

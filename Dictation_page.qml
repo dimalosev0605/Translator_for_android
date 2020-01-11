@@ -11,7 +11,6 @@ Item {
         anchors.top: parent.top
         anchors.topMargin: 5
     }
-
     Rectangle {
         id: qstn_rect
         width: parent.width / 2
@@ -80,6 +79,45 @@ Item {
         color: "#ff0000"
         text: score
     }
+
+    Rectangle {
+        id: swap_direction_btn
+        height: 30
+        width: dictation_page.width / 4
+        anchors.horizontalCenter: col.horizontalCenter
+        anchors.top: right_answ.bottom
+        anchors.topMargin: 5
+        border.width: 1
+        border.color: "black"
+        radius: 5
+        color: mouse_area.pressed ? "#00ff00" : "white"
+        Text {
+            text: "Swap"
+            anchors.centerIn: parent
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+            width: parent.width
+            height: parent.height
+            fontSizeMode: Text.Fit
+            minimumPointSize: 5
+            font.pointSize: 13
+            elide: Text.ElideRight
+            wrapMode: Text.WordWrap
+        }
+        MouseArea {
+            id: mouse_area
+            anchors.fill: parent
+            onClicked: {
+                test_words.change_direction()
+                qstn_text.text = test_words.get_qstn()
+                b_0.text = test_words.get(0)
+                b_1.text = test_words.get(1)
+                b_2.text = test_words.get(2)
+                b_3.text = test_words.get(3)
+            }
+        }
+    }
+
 }
 
 

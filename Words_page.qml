@@ -5,6 +5,7 @@ Item {
     id: words_page
 
     property int interface_flag
+    property alias words_count: words_count
     // 4 - interface for test page
 
     Back_btn {
@@ -14,6 +15,28 @@ Item {
         anchors.leftMargin: 5
         anchors.topMargin: 5
     }
+    Text {
+        id: words_count
+        visible: interface_flag === 4 ? true : false
+//        anchors.left: back_btn.right
+//        anchors.leftMargin: 5
+        anchors.top: back_btn.top
+        anchors.horizontalCenter: parent.horizontalCenter
+        width: 100
+        height: back_btn.height
+        verticalAlignment: Text.AlignVCenter
+        horizontalAlignment: Text.AlignHCenter
+        fontSizeMode: Text.Fit
+        minimumPointSize: 3
+        font.pointSize: 15
+        elide: Text.ElideRight
+        wrapMode: Text.WordWrap
+        property int count: interface_flag === 4 ? test_words.get_words_count() : 0
+        color: count < 4 ? "#ff0000" : "#00ff00"
+//        text: "Count = " + count
+        text: count
+    }
+
     Rectangle {
         // if interface == 4
         id: start_btn
@@ -45,6 +68,7 @@ Item {
             id: mouse_area
             anchors.fill: parent
             onClicked: {
+                if(words_count.count < 4) return
                 if(test_words.get_checked()) {
                     test_words.prepare()
                     test_words.rand_generator_2()

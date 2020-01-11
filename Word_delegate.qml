@@ -4,7 +4,7 @@ import QtQuick.Controls 2.4
 Rectangle {
     id: root
     width: words_list_view.width
-    height: (words_list_view.height - 11 * words_list_view.spacing) / 12
+    height: (words_list_view.height - 9 * words_list_view.spacing) / 10
     border.width: 1
     border.color: "black"
 
@@ -23,8 +23,18 @@ Rectangle {
         anchors.fill: parent
         visible: interface_flag === 4 ? true : false
         onClicked: {
-            console.log("index = " + index)
-            test_words.set_idx(index)
+//            console.log("index = " + index)
+            // if user choose all words by hand -> pizda...
+            if(test_words.set_idx(index)) {
+                if(test_words.get_words_count() === words_page.words_count.count)
+                    words_page.words_count.count = 0
+                ++words_page.words_count.count;
+            }
+            else {
+                --words_page.words_count.count;
+                if(words_page.words_count.count === 0)
+                    words_page.words_count.count = test_words.get_words_count()
+            }
             color = test_words.get_idx(index) ? "#00ff00" : "white"
         }
     }
@@ -45,7 +55,7 @@ Rectangle {
                 height: parent.height
                 fontSizeMode: Text.Fit
                 minimumPointSize: 3
-                font.pointSize: 13
+                font.pointSize: 15
                 elide: Text.ElideRight
                 wrapMode: Text.WordWrap
             }
@@ -73,7 +83,7 @@ Rectangle {
                 height: parent.height
                 fontSizeMode: Text.Fit
                 minimumPointSize: 3
-                font.pointSize: 13
+                font.pointSize: 15
                 elide: Text.ElideRight
                 wrapMode: Text.WordWrap
             }
@@ -92,7 +102,7 @@ Rectangle {
                 height: parent.height
                 fontSizeMode: Text.Fit
                 minimumPointSize: 3
-                font.pointSize: 13
+                font.pointSize: 15
                 elide: Text.ElideRight
                 wrapMode: Text.WordWrap
             }
@@ -111,7 +121,7 @@ Rectangle {
                 height: parent.height
                 fontSizeMode: Text.Fit
                 minimumPointSize: 3
-                font.pointSize: 13
+                font.pointSize: 15
                 elide: Text.ElideRight
                 wrapMode: Text.WordWrap
             }

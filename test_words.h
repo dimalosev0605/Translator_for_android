@@ -18,6 +18,7 @@ class Test_words: public QObject
     QVector<bool> idxs;
     QVector<int> w_numbers;
     bool checked = false;
+    bool direction = 1;
 public:
     explicit Test_words(QObject* parent = nullptr);
 
@@ -29,9 +30,11 @@ public slots:
     QString get_qstn() const;
     int get_ran() const;
     bool get_idx(int index) const;
-    void set_idx(int index);
+    bool set_idx(int index);
     bool get_checked() const;
+    int get_words_count() const;
     void prepare();
+    void change_direction();
 };
 
 #endif // TEST_WORDS_H
