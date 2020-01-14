@@ -10,7 +10,7 @@ Rectangle {
     Image {
         id: img
         anchors.fill: parent
-        source: "back_btn_icon.svg"
+        source: "qrc:/icons/back_btn_icon.svg"
     }
     MouseArea {
         id: mouse_area

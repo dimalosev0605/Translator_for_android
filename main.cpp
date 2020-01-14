@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<Test_words>("Test_words_qml", 1, 0, "Test_words");
 
     QQmlApplicationEngine engine;
-    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+    engine.load(QUrl(QStringLiteral("qrc:/qml_files/main.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;
 

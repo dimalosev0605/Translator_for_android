@@ -5,6 +5,7 @@ import Words_data_model_qml 1.0
 
 Item {
     id: translator_page
+    focus: true
 
     function clear_fields() {
         user_input_field.text = ""
@@ -53,7 +54,7 @@ Item {
 
     TextField {
         id: user_input_field
-        width: (translator_page.width - anchors.leftMargin * 3) * 0.75
+        width: (translator_page.width - anchors.leftMargin * 3) * 0.75 - clear_uif_btn.width
         height: 30
         anchors.top: menu_bar.bottom
         anchors.left: menu_bar.left
@@ -64,8 +65,21 @@ Item {
         onTextChanged: {
             blocks_data_model.on_input_changed(user_input_field.text)
         }
+        rightPadding: clear_uif_btn.width + clear_uif_btn.anchors.rightMargin * 2
+        Image {
+            id: clear_uif_btn
+            height: 24
+            width: height
+            anchors.right: parent.right
+            anchors.rightMargin: 3
+            anchors.verticalCenter: parent.verticalCenter
+            source: "qrc:/icons/clear_icon.svg"
+            MouseArea {
+                anchors.fill: parent
+                onClicked: user_input_field.clear()
+            }
+        }
         Keys.onReturnPressed: {
-            console.log("VIRTUAL_KEY_BOARD_RETURN")
             Qt.inputMethod.hide();
             focus = false
             translator_page.focus = true
@@ -81,6 +95,25 @@ Item {
         inputMethodHints: Qt.ImhNoPredictiveText
         placeholderText: "Input means"
         visible: false
+        rightPadding: clear_mf_btn.width + clear_mf_btn.anchors.rightMargin * 2
+        Image {
+            id: clear_mf_btn
+            height: 24
+            width: height
+            anchors.right: parent.right
+            anchors.rightMargin: 3
+            anchors.verticalCenter: parent.verticalCenter
+            source: "qrc:/icons/clear_icon.svg"
+            MouseArea {
+                anchors.fill: parent
+                onClicked: means_field.clear()
+            }
+        }
+        Keys.onReturnPressed: {
+            Qt.inputMethod.hide();
+            focus = false
+            translator_page.focus = true
+        }
     }
     TextField {
         id: translations_filed
@@ -92,6 +125,25 @@ Item {
         inputMethodHints: Qt.ImhNoPredictiveText
         placeholderText: "Input translations"
         visible: means_field
+        rightPadding: clear_tf_btn.width + clear_tf_btn.anchors.rightMargin * 2
+        Image {
+            id: clear_tf_btn
+            height: 24
+            width: height
+            anchors.right: parent.right
+            anchors.rightMargin: 3
+            anchors.verticalCenter: parent.verticalCenter
+            source: "qrc:/icons/clear_icon.svg"
+            MouseArea {
+                anchors.fill: parent
+                onClicked: translations_filed.clear()
+            }
+        }
+        Keys.onReturnPressed: {
+            Qt.inputMethod.hide();
+            focus = false
+            translator_page.focus = true
+        }
     }
 
     Rectangle {
@@ -175,6 +227,24 @@ Item {
         width: 300
         height: 90
         radius: 20
+
+        Image {
+            id: close_font_size_menu_btn
+            height: 30
+            width: 30
+            anchors.left: font_size_slider.right
+            anchors.leftMargin: 5
+            anchors.verticalCenter: font_size_slider.verticalCenter
+            source: "qrc:/icons/clear_icon.svg"
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    slider_frame.visible = false
+                    translator_page.focus = true
+                }
+            }
+        }
+
         Slider {
             id: font_size_slider
             anchors.centerIn: parent
@@ -183,6 +253,7 @@ Item {
             to: (blocks_list_view.height - blocks_list_view.spacing * 3) / 4 / 3
             stepSize: 1
             onValueChanged: blocks_list_view.text_height = value
+            onPressedChanged: pressed ? slider_frame.opacity = 0.2 : slider_frame.opacity = 1
         }
     }
 

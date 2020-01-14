@@ -24,10 +24,10 @@ SOURCES += \
     words_data_model.cpp \
     word.cpp \
     basefilesdatamodel.cpp \
-    localfilesdatamodel.cpp \
     filemanager.cpp \
     settings.cpp \
     client.cpp \
+    localfilesdatamodel.cpp \
     jsonhelper.cpp \
     remotefilesdatamodel.cpp \
     test_words.cpp
@@ -55,11 +55,11 @@ HEADERS += \
     words_data_model.h \
     word.h \
     basefilesdatamodel.h \
-    localfilesdatamodel.h \
     filemanager.h \
     settings.h \
     client.h \
     jsonhelper.h \
+    localfilesdatamodel.h \
     remotefilesdatamodel.h \
     test_words.h
 

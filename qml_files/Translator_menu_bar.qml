@@ -18,7 +18,7 @@ Item {
             id: back_btn
         }
         Menu_bar_item {
-            img.source: "my_files_icon.svg"
+            img.source: "qrc:/icons/my_files_icon.svg"
             mouse_area.onClicked: file_menu.open()
             Menu {
                 id: file_menu
@@ -63,7 +63,7 @@ Item {
             }
         }
         Menu_bar_item {
-            img.source: "settings_btn_icon.svg"
+            img.source: "qrc:/icons/settings_btn_icon.svg"
             mouse_area.onClicked: options_menu.open()
             Menu {
                 id: options_menu
