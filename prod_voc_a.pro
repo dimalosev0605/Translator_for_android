@@ -45,7 +45,14 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-DISTFILES +=
+DISTFILES += \
+    android/AndroidManifest.xml \
+    android/gradle/wrapper/gradle-wrapper.jar \
+    android/gradlew \
+    android/res/values/libs.xml \
+    android/build.gradle \
+    android/gradle/wrapper/gradle-wrapper.properties \
+    android/gradlew.bat
 
 HEADERS += \
     blocks_data_model.h \
@@ -70,3 +77,5 @@ contains(ANDROID_TARGET_ARCH,armeabi-v7a) {
         $$PWD/../../Desktop/dll/android_ssl/libcrypto.so \
         $$PWD/../../Desktop/dll/android_ssl/libssl.so
 }
+
+ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
