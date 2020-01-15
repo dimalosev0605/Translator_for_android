@@ -44,7 +44,8 @@ Item {
         anchors.topMargin: 5
         anchors.right: words_page.right
         anchors.rightMargin: 5
-        height: words_page.height * 0.3
+        height: find_text_field.height + find_text_field.anchors.topMargin + next_occur_btn.height + next_occur_btn.anchors.topMargin + 5
+        + show_hide_date_column_btn.height + show_hide_date_column_btn.anchors.bottomMargin
 
         TextField {
             id: find_text_field
@@ -160,6 +161,47 @@ Item {
                 }
             }
         }
+
+        Rectangle {
+            id: show_hide_date_column_btn
+            anchors.right: parent.right
+            anchors.rightMargin: 5
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 5
+            border.color: "black"
+            border.width: 1
+            height: 30
+            width: 100
+            color: show_hide_date_column_btn_m_area.pressed ? "#00ff00" : "white"
+            Text {
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                width: parent.width
+                height: parent.height
+                fontSizeMode: Text.Fit
+                minimumPointSize: 3
+                font.pointSize: 12
+                elide: Text.ElideRight
+                wrapMode: Text.WordWrap
+                text: words_list_view.is_date_visible ? "Hide date" : "Show date"
+            }
+
+            MouseArea {
+                id: show_hide_date_column_btn_m_area
+                anchors.fill: parent
+                onClicked: {
+                    if(words_list_view.column_count === 4) {
+                        --words_list_view.column_count
+                        words_list_view.is_date_visible = false
+                    }
+                    else {
+                        ++words_list_view.column_count
+                        words_list_view.is_date_visible = true
+                    }
+                }
+            }
+        }
+
     }
     //
 
@@ -227,6 +269,8 @@ Item {
             highlightMoveVelocity: 1600
             clip: true
             currentIndex: -1
+            property int column_count: 4
+            property bool is_date_visible: true
             delegate: Word_delegate {
                 interface_flag: words_page.interface_flag
                 word_and_transcription: String(model.word + '\n' + model.transcription)

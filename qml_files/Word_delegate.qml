@@ -13,7 +13,10 @@ Rectangle {
             root.color = "yellow"
         }
         else {
-            root.color = "white"
+            if(test_words.get_idx(index))
+                root.color = "#00ff00"
+            else
+                root.color = "white"
             color: interface_flag === 4 ? test_words.get_idx(index) ? "#00ff00" : "white" : "white"
         }
     }
@@ -85,7 +88,7 @@ Rectangle {
             border.width: 1
             border.color: "black"
             height: root.height
-            width: (root.width - idx.width)/ 4
+            width: (root.width - idx.width) / words_list_view.column_count
             color: root.color
             Text {
                 id: word_and_transcripton
@@ -104,7 +107,7 @@ Rectangle {
             border.width: 1
             border.color: "black"
             height: root.height
-            width: (root.width - idx.width)/ 4
+            width: (root.width - idx.width) / words_list_view.column_count
             color: root.color
             Text {
                 id: means
@@ -123,7 +126,7 @@ Rectangle {
             border.width: 1
             border.color: "black"
             height: root.height
-            width: (root.width - idx.width)/ 4
+            width: (root.width - idx.width) / words_list_view.column_count
             color: root.color
             Text {
                 id: syns
@@ -142,8 +145,9 @@ Rectangle {
             border.width: 1
             border.color: "black"
             height: root.height
-            width: (root.width - idx.width) / 4
+            width: (root.width - idx.width) / words_list_view.column_count
             color: root.color
+            visible: words_list_view.is_date_visible
             Text {
                 id: date
                 verticalAlignment: Text.AlignVCenter

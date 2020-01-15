@@ -128,10 +128,10 @@ bool Words_data_model::save_words_and_clear_internal_padding()
 
 int Words_data_model::find_word(const QString &word)
 {
-    if(word.isEmpty()) return 0;
     QString s;
     curr_index = 0;
     word_occur_indexes.clear();
+    if(word.isEmpty()) return 0;
     for(int i = 0; i < words.size(); ++i) {
         s = words[i].get_word() + words[i].get_syns() + words[i].get_means();
         if(s.contains(word)) {
@@ -164,7 +164,7 @@ int Words_data_model::get_curr_index() const
 
 int Words_data_model::get_first_occurence_index()
 {
-    if(word_occur_indexes.size()) {
+    if(!word_occur_indexes.isEmpty()) {
         return word_occur_indexes[0];
     }
     return -1;
