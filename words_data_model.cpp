@@ -126,6 +126,50 @@ bool Words_data_model::save_words_and_clear_internal_padding()
     return false;
 }
 
+int Words_data_model::find_word(const QString &word)
+{
+    if(word.isEmpty()) return 0;
+    QString s;
+    curr_index = 0;
+    word_occur_indexes.clear();
+    for(int i = 0; i < words.size(); ++i) {
+        s = words[i].get_word() + words[i].get_syns() + words[i].get_means();
+        if(s.contains(word)) {
+            word_occur_indexes.push_back(i);
+        }
+    }
+    return word_occur_indexes.size();
+}
+
+int Words_data_model::increase_word_occur_index()
+{
+    if(curr_index != word_occur_indexes.size() - 1) {
+        ++curr_index;
+    }
+    return word_occur_indexes[curr_index];
+}
+
+int Words_data_model::decrease_word_occur_index()
+{
+    if(curr_index != 0) {
+        --curr_index;
+    }
+    return word_occur_indexes[curr_index];
+}
+
+int Words_data_model::get_curr_index() const
+{
+    return curr_index + 1;
+}
+
+int Words_data_model::get_first_occurence_index()
+{
+    if(word_occur_indexes.size()) {
+        return word_occur_indexes[0];
+    }
+    return -1;
+}
+
 
 
 

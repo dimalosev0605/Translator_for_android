@@ -26,6 +26,8 @@ class Words_data_model: public QAbstractListModel
     QHash<int, QByteArray> roleNames() const override;
     QVector <Word> words;
     QString file_name;
+    QVector<int> word_occur_indexes;
+    int curr_index = 0;
 
 private:
     void save_words();
@@ -44,6 +46,11 @@ public slots:
     void open_file();
     void remove_word(int index);
     bool save_words_and_clear_internal_padding();
+    int find_word(const QString& word);
+    int increase_word_occur_index();
+    int decrease_word_occur_index();
+    int get_curr_index() const;
+    int get_first_occurence_index();
 
 signals:
     void is_save_changed();

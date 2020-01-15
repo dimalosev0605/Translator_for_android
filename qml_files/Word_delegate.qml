@@ -8,6 +8,16 @@ Rectangle {
     border.width: 1
     border.color: "black"
 
+    onFocusChanged: {
+        if(focus) {
+            root.color = "yellow"
+        }
+        else {
+            root.color = "white"
+            color: interface_flag === 4 ? test_words.get_idx(index) ? "#00ff00" : "white" : "white"
+        }
+    }
+
     property alias word_and_transcription: word_and_transcripton.text
     property alias means: means.text
     property alias syns: syns.text
@@ -17,6 +27,7 @@ Rectangle {
     // 2 - in my_files_page
     // 4 - in test_page
     property int interface_flag
+    property int font_size: font_size_slider.value
 
     color: interface_flag === 4 ? test_words.get_idx(index) ? "#00ff00" : "white" : "white"
     MouseArea {
@@ -26,14 +37,14 @@ Rectangle {
 //            console.log("index = " + index)
             // if user choose all words by hand -> pizda...
             if(test_words.set_idx(index)) {
-                if(test_words.get_words_count() === words_page.words_count.count)
-                    words_page.words_count.count = 0
-                ++words_page.words_count.count;
+                if(test_words.get_words_count() === words_page.start_btn_text.count)
+                    words_page.start_btn_text.count = 0
+                ++words_page.start_btn_text.count;
             }
             else {
-                --words_page.words_count.count;
-                if(words_page.words_count.count === 0)
-                    words_page.words_count.count = test_words.get_words_count()
+                --words_page.start_btn_text.count;
+                if(words_page.start_btn_text.count === 0)
+                    words_page.start_btn_text.count = test_words.get_words_count()
             }
             color = test_words.get_idx(index) ? "#00ff00" : "white"
         }
@@ -41,11 +52,12 @@ Rectangle {
 
     Row  {
         Rectangle {
+            id: idx_rect
             border.width: 1
             border.color: "black"
             height: root.height
             width: 30
-            color: m_area.pressed ? "red" : "White"
+            color: m_area.pressed ? "red" : "white"
             Text {
                 id: idx
                 text: index + 1
@@ -83,7 +95,7 @@ Rectangle {
                 height: parent.height
                 fontSizeMode: Text.Fit
                 minimumPointSize: 3
-                font.pointSize: 15
+                font.pointSize: font_size
                 elide: Text.ElideRight
                 wrapMode: Text.WordWrap
             }
@@ -102,7 +114,7 @@ Rectangle {
                 height: parent.height
                 fontSizeMode: Text.Fit
                 minimumPointSize: 3
-                font.pointSize: 15
+                font.pointSize: font_size
                 elide: Text.ElideRight
                 wrapMode: Text.WordWrap
             }
@@ -121,7 +133,7 @@ Rectangle {
                 height: parent.height
                 fontSizeMode: Text.Fit
                 minimumPointSize: 3
-                font.pointSize: 15
+                font.pointSize: font_size
                 elide: Text.ElideRight
                 wrapMode: Text.WordWrap
             }
@@ -140,7 +152,7 @@ Rectangle {
                 height: parent.height
                 fontSizeMode: Text.Fit
                 minimumPointSize: 3
-                font.pointSize: 13
+                font.pointSize: font_size
                 elide: Text.ElideRight
                 wrapMode: Text.WordWrap
             }

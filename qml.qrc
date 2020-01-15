@@ -26,5 +26,7 @@
         <file>qml_files/Translator_page.qml</file>
         <file>qml_files/Word_delegate.qml</file>
         <file>qml_files/Words_page.qml</file>
+        <file>icons/next_arr.svg</file>
+        <file>icons/previous_arr.svg</file>
     </qresource>
 </RCC>
