@@ -28,5 +28,7 @@
         <file>qml_files/Words_page.qml</file>
         <file>icons/next_arr.svg</file>
         <file>icons/previous_arr.svg</file>
+        <file>qml_files/Search_history_page.qml</file>
+        <file>qml_files/History_word_delegate.qml</file>
     </qresource>
 </RCC>

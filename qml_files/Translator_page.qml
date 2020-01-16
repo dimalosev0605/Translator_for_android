@@ -2,6 +2,7 @@ import QtQuick 2.11
 import QtQuick.Controls 2.4
 import Blocks_data_model_qml 1.0
 import Words_data_model_qml 1.0
+import Search_history_data_model_qml 1.0
 
 Item {
     id: translator_page
@@ -21,6 +22,9 @@ Item {
     }
     Words_data_model {
         id: words_data_model
+    }
+    Search_history_data_model {
+        id: search_history_words_data_model
     }
     Component {
         id: file_dialog_page_comp
@@ -44,6 +48,14 @@ Item {
             Component.onDestruction: print("Destroying langs_page.")
         }
     }
+    Component {
+        id: search_history_page_comp
+        Search_history_page {
+            id: search_history_page
+            Component.onDestruction: print("Destroying search_history_page.")
+        }
+    }
+
     Keys.onReleased: {
         if (event.key === Qt.Key_Back) {
             console.log("POP BACK")
@@ -83,6 +95,8 @@ Item {
             Qt.inputMethod.hide();
             focus = false
             translator_page.focus = true
+            search_history_words_data_model.push_front(user_input_field.text, blocks_data_model.get_transcription(),
+                                                       blocks_data_model.get_most_popular_syn())
         }
     }
     TextField {

@@ -17,6 +17,7 @@ public:
     QString get_file_path(const QString& file_name);
     QString get_user_files_dir();
     QString get_auth_file_path();
+    QString get_search_history_file_path();
     QList<QFileInfo> retrieve_user_files();
     bool create_file(const QString& file_name);
 };

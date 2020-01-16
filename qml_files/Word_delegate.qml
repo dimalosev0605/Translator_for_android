@@ -13,11 +13,16 @@ Rectangle {
             root.color = "yellow"
         }
         else {
-            if(test_words.get_idx(index))
-                root.color = "#00ff00"
-            else
+            if(interface_flag === 4) {
+                if(test_words.get_idx(index))
+                    root.color = "#00ff00"
+                else
+                    root.color = "white"
+                color: interface_flag === 4 ? test_words.get_idx(index) ? "#00ff00" : "white" : "white"
+            }
+            else {
                 root.color = "white"
-            color: interface_flag === 4 ? test_words.get_idx(index) ? "#00ff00" : "white" : "white"
+            }
         }
     }
 

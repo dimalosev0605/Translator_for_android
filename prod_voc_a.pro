@@ -30,7 +30,8 @@ SOURCES += \
     localfilesdatamodel.cpp \
     jsonhelper.cpp \
     remotefilesdatamodel.cpp \
-    test_words.cpp
+    test_words.cpp \
+    search_history_data_model.cpp
 
 RESOURCES += qml.qrc
 
@@ -68,7 +69,8 @@ HEADERS += \
     jsonhelper.h \
     localfilesdatamodel.h \
     remotefilesdatamodel.h \
-    test_words.h
+    test_words.h \
+    search_history_data_model.h
 
 contains(ANDROID_TARGET_ARCH,armeabi-v7a) {
     ANDROID_EXTRA_LIBS = \

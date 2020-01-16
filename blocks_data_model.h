@@ -36,6 +36,7 @@ public:
 public slots:
     void on_input_changed(const QString& user_input);
     QString get_transcription(); // God forgive me
+    QString get_most_popular_syn(); // God forgive me
     void change_from_lang(const QString& l);
     void change_on_lang(const QString& l);
     QString get_from_lang() const;

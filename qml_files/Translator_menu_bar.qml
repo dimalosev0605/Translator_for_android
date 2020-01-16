@@ -69,7 +69,7 @@ Item {
                 id: options_menu
                 y: parent.height
                 width: 100
-                property int items_count: 2
+                property int items_count: 3
                 height: items_count * 30
                 Menu_item {
                     text: "Langs"
@@ -83,6 +83,14 @@ Item {
                     mouse_area.onClicked: {
                         options_menu.close()
                         slider_frame.visible ? slider_frame.visible = false : slider_frame.visible = true
+                    }
+                }
+                Menu_item {
+                    id: search_history_item
+                    text: "History"
+                    mouse_area.onClicked: {
+                        options_menu.close()
+                        stack_view.push(search_history_page_comp)
                     }
                 }
             }

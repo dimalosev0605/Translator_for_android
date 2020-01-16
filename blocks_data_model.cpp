@@ -78,6 +78,18 @@ QString Blocks_data_model::get_transcription()
     return blocks[0].get_transcription();
 }
 
+QString Blocks_data_model::get_most_popular_syn()
+{
+    if(blocks.empty()) return QString();
+    QString str = blocks[0].get_syns();
+    int i = str.indexOf(QChar(','));
+    QString mean;
+    for(int j = 0; j < i; ++j) {
+        mean.push_back(str[j]);
+    }
+    return mean;
+}
+
 void Blocks_data_model::change_from_lang(const QString &l)
 {
     yandex_api_connection.change_from_lang(l);

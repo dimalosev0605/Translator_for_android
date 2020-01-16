@@ -4,6 +4,7 @@ const QString user_files_dir = "user_files";
 const QString user_settings_dir = "user_settings";
 const QString abk_extension = ".abk";
 const QString auth_file = "auth_file";
+const QString search_history = "search_history";
 
 FileManager::FileManager()
 {
@@ -48,6 +49,11 @@ QString FileManager::get_user_files_dir()
 QString FileManager::get_auth_file_path()
 {
     return QStandardPaths::writableLocation(QStandardPaths::DataLocation) + '/' + user_settings_dir + '/' + auth_file + abk_extension;
+}
+
+QString FileManager::get_search_history_file_path()
+{
+    return QStandardPaths::writableLocation(QStandardPaths::DataLocation) + '/' + user_settings_dir + '/' + search_history + abk_extension;
 }
 
 QList<QFileInfo> FileManager::retrieve_user_files()
