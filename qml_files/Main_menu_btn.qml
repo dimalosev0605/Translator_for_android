@@ -6,8 +6,6 @@ Rectangle {
     border.width: 1
     border.color: "black"
     color: enabled ? mouse_area.pressed ? "#00ff00" : "white" : "#cfcfcf"
-    width: 100
-    height: 40
 
     property alias mouse_area: mouse_area
     property alias text: text.text

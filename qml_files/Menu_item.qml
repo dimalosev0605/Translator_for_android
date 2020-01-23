@@ -3,8 +3,8 @@ import QtQuick.Controls 2.4
 
 Rectangle {
     id: root
-    width: file_menu.width
-    height: 30
+    width: translator_menu_bar.menu_item_width
+    height: translator_menu_bar.menu_item_height
     color: enabled ? mouse_area.pressed ? "#00ff00" : "white" : "#cfcfcf"
     border.width: 1
     border.color: "#000000"

@@ -52,15 +52,18 @@ void Yandex_api_connection::receive_data_from_api_voc(QNetworkReply *reply)
         if(reply->error() == QNetworkReply::NoError)
         {
             parser.parse(QString::fromUtf8(reply->readAll()).toUtf8());
-            blocks = parser.get_blocks(); // move ???
-            emit blocks_ready();
+            blocks = std::move(parser.get_blocks());
         }
         else
         {
             blocks.clear();
-            emit blocks_ready();
         }
     }
+    else
+    {
+        blocks.clear();
+    }
+    emit blocks_ready();
     reply->deleteLater();
 }
 

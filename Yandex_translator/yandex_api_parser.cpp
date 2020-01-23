@@ -55,13 +55,12 @@ void Yandex_api_parser::parse(const QByteArray &data)
                 block.make_example();
             }
             block.prepeare_block();
-            blocks.push_back(block);
-            block.clear();
+            blocks.push_back(std::move(block));
         }
     }
 }
 
-QVector<Block> &Yandex_api_parser::get_blocks()
+QVector<Block>& Yandex_api_parser::get_blocks()
 {
     return blocks;
 }

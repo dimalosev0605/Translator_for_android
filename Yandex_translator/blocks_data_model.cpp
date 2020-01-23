@@ -58,7 +58,7 @@ void Blocks_data_model::remove_all_rows()
     endRemoveRows();
 }
 
-void Blocks_data_model::insert_rows(int first, int last, QVector<Block>& v)
+void Blocks_data_model::insert_rows(int first, int last, QVector<Block>&& v)
 {
     if(last < 0) return;
     beginInsertRows(QModelIndex(), first, last);
@@ -121,9 +121,9 @@ QString Blocks_data_model::get_on_lang() const
 
 void Blocks_data_model::process_blocks()
 {
-    auto temp = yandex_api_connection.get_blocks();
+    auto temp = std::move(yandex_api_connection.get_blocks());
     remove_all_rows();
-    insert_rows(0, temp.size() - 1, temp);
+    insert_rows(0, temp.size() - 1, std::move(temp));
 }
 
 

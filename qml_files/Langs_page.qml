@@ -13,7 +13,6 @@ Item {
     }
 
     Row {
-        // from..to
         anchors.horizontalCenter: parent.horizontalCenter
         y: parent.height * 0.25
         spacing: 10
@@ -24,6 +23,7 @@ Item {
             onActivated: {
                 blocks_data_model.change_from_lang(currentText)
                 displayText = blocks_data_model.get_from_lang()
+                menu_bar.langs_menu_item.text = blocks_data_model.get_from_lang() + " - " + blocks_data_model.get_on_lang()
             }
         }
         ComboBox {
@@ -33,6 +33,7 @@ Item {
             onActivated: {
                 blocks_data_model.change_on_lang(currentText)
                 displayText = blocks_data_model.get_on_lang()
+                menu_bar.langs_menu_item.text = blocks_data_model.get_from_lang() + " - " + blocks_data_model.get_on_lang()
             }
         }
     }

@@ -9,9 +9,9 @@ Item {
     focus: true
 
     function clear_fields() {
-        user_input_field.text = ""
-        means_field.text = ""
-        translations_filed.text = ""
+        user_input_field.clear()
+        means_field.clear()
+        translations_filed.clear()
     }
 
     Translator_menu_bar {
@@ -30,7 +30,6 @@ Item {
         id: file_dialog_page_comp
         File_dialog_page {
             id: file_dialog_page
-            Component.onDestruction: print("Destroying file_dialog page.")
         }
     }
     Component {
@@ -38,31 +37,29 @@ Item {
         Words_page {
             id: words_page
             interface_flag: 1
-            Component.onDestruction: print("Destroying words_page.")
         }
     }
     Component {
         id: langs_page_comp
         Langs_page {
             id: langs_page
-            Component.onDestruction: print("Destroying langs_page.")
         }
     }
     Component {
         id: search_history_page_comp
         Search_history_page {
             id: search_history_page
-            Component.onDestruction: print("Destroying search_history_page.")
         }
     }
 
     Keys.onReleased: {
         if (event.key === Qt.Key_Back) {
-            console.log("POP BACK")
             event.accepted = true
             stack_view.pop()
         }
     }
+
+    property int clear_icon_height: 24
 
     TextField {
         id: user_input_field
@@ -80,7 +77,7 @@ Item {
         rightPadding: clear_uif_btn.width + clear_uif_btn.anchors.rightMargin * 2
         Image {
             id: clear_uif_btn
-            height: 24
+            height: clear_icon_height
             width: height
             anchors.right: parent.right
             anchors.rightMargin: 3
@@ -112,7 +109,7 @@ Item {
         rightPadding: clear_mf_btn.width + clear_mf_btn.anchors.rightMargin * 2
         Image {
             id: clear_mf_btn
-            height: 24
+            height: clear_icon_height
             width: height
             anchors.right: parent.right
             anchors.rightMargin: 3
@@ -142,7 +139,7 @@ Item {
         rightPadding: clear_tf_btn.width + clear_tf_btn.anchors.rightMargin * 2
         Image {
             id: clear_tf_btn
-            height: 24
+            height: clear_icon_height
             width: height
             anchors.right: parent.right
             anchors.rightMargin: 3
@@ -207,7 +204,7 @@ Item {
         height: means_field.height
         color: add_word_btn_m_area.pressed ? "#00ff00" : "#cfcfcf"
         Text {
-            text: "Add"
+            text: "Add word"
             anchors.centerIn: parent
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
@@ -223,6 +220,7 @@ Item {
             id: add_word_btn_m_area
             anchors.fill: parent
             onClicked: {
+                if(user_input_field.text === "") return
                 words_data_model.add_word(user_input_field.text, blocks_data_model.get_transcription(),
                                           means_field.text, translations_filed.text)
                 clear_fields()
@@ -238,10 +236,25 @@ Item {
         z: 3
         border.width: 1
         border.color: "black"
-        width: 300
-        height: 90
+        width: parent.width * 0.7
+        height: parent.height * 0.25
         radius: 20
 
+        Slider {
+            id: font_size_slider
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.leftMargin: 5
+            anchors.rightMargin: 5
+            width: slider_frame.width - anchors.leftMargin - anchors.rightMargin -
+                   close_font_size_menu_btn.width - close_font_size_menu_btn.anchors.leftMargin
+            height: 30
+            value: blocks_list_view.text_height
+            from: 5
+            to: (blocks_list_view.height - blocks_list_view.spacing * 3) / 4 / 3
+            stepSize: 1
+            onValueChanged: blocks_list_view.text_height = value
+            onPressedChanged: pressed ? slider_frame.opacity = 0.2 : slider_frame.opacity = 1
+        }
         Image {
             id: close_font_size_menu_btn
             height: 30
@@ -257,17 +270,6 @@ Item {
                     translator_page.focus = true
                 }
             }
-        }
-
-        Slider {
-            id: font_size_slider
-            anchors.centerIn: parent
-            value: blocks_list_view.text_height
-            from: 5
-            to: (blocks_list_view.height - blocks_list_view.spacing * 3) / 4 / 3
-            stepSize: 1
-            onValueChanged: blocks_list_view.text_height = value
-            onPressedChanged: pressed ? slider_frame.opacity = 0.2 : slider_frame.opacity = 1
         }
     }
 

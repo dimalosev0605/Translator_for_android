@@ -3,7 +3,6 @@
 
 
 #include <QAbstractListModel>
-#include "block.h"
 #include "yandex_api_connection.h"
 
 class Blocks_data_model: public QAbstractListModel
@@ -31,12 +30,12 @@ public:
     virtual QVariant data(const QModelIndex& index, int role) const override;
 
     void remove_all_rows();
-    void insert_rows(int first, int last, QVector<Block>& v);
+    void insert_rows(int first, int last, QVector<Block>&& v);
 
 public slots:
     void on_input_changed(const QString& user_input);
-    QString get_transcription(); // God forgive me
-    QString get_most_popular_syn(); // God forgive me
+    QString get_transcription(); // Magic functioun
+    QString get_most_popular_syn(); // Magic functioun
     void change_from_lang(const QString& l);
     void change_on_lang(const QString& l);
     QString get_from_lang() const;

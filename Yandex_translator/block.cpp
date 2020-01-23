@@ -16,13 +16,6 @@ void Block::prepeare_block()
     examples.chop(1);
 }
 
-void Block::clear()
-{
-    means.clear();
-    syns.clear();
-    examples.clear();
-}
-
 void Block::set_type_speech(const QString &s)
 {
     type_speech = s;

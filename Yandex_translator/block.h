@@ -18,7 +18,6 @@ public:
     explicit Block() = default;
     Block(QString& t_s, QString& tr, QString& m, QString& s, QString& ex);
     void prepeare_block();
-    void clear();
 
     void set_type_speech(const QString& s);
     void set_transcription(const QString& s);
