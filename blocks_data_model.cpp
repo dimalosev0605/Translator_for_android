@@ -81,8 +81,17 @@ QString Blocks_data_model::get_transcription()
 QString Blocks_data_model::get_most_popular_syn()
 {
     if(blocks.empty()) return QString();
-    QString str = blocks[0].get_syns();
+
+    QString str;
+    for(int k = 0; k < blocks.size(); ++k) {
+        if(!blocks[k].get_syns().isEmpty()) {
+            str = blocks[k].get_syns();
+            break;
+        }
+    }
+
     int i = str.indexOf(QChar(','));
+    if(i == -1 && !str.isEmpty()) i = str.size();
     QString mean;
     for(int j = 0; j < i; ++j) {
         mean.push_back(str[j]);

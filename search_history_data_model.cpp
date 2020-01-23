@@ -86,6 +86,7 @@ void Search_history_data_model::push_front(const QString &w, const QString &tran
 //    qDebug() << mean;
 //    qDebug() << "###############\n";
 //    beginInsertRows(QModelIndex(), 0, 0);
+    if(w.isEmpty()) return;
     words_history.push_front(Word(w, transcription, mean, QString()));
 //    endInsertRows();
 }
@@ -102,5 +103,11 @@ void Search_history_data_model::remove(int index)
 QString Search_history_data_model::get_word_from_history(int index)
 {
     if(index < 0 || index >= words_history.size()) return QString();
-    return words_history[index].get_word();
+    Word temp = Word(words_history[index].get_word(), words_history[index].get_transcription(),
+                     words_history[index].get_means(), words_history[index].get_syns());
+    beginRemoveRows(QModelIndex(), index, index);
+    words_history.removeAt(index);
+    endRemoveRows();
+    words_history.push_front(temp);
+    return temp.get_word();
 }
