@@ -4,8 +4,8 @@
 #include <QObject>
 #include <QDataStream>
 #include <QDebug>
-#include "word.h"
-#include "filemanager.h"
+#include "Words_models/word.h"
+#include "File_models/filemanager.h"
 
 class Test_words: public QObject
 {

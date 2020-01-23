@@ -6,7 +6,7 @@
 #include <QVector>
 #include <QDataStream>
 #include "word.h"
-#include "filemanager.h"
+#include "File_models/filemanager.h"
 
 class Words_data_model: public QAbstractListModel
 {

@@ -5,7 +5,7 @@
 #include <QList>
 #include <QDataStream>
 #include "word.h"
-#include "filemanager.h"
+#include "File_models/filemanager.h"
 
 class Search_history_data_model: public QAbstractListModel
 {

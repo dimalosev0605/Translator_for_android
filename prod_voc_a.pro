@@ -17,21 +17,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-    blocks_data_model.cpp \
-    block.cpp \
-    yandex_api_connection.cpp \
-    yandex_api_parser.cpp \
-    words_data_model.cpp \
-    word.cpp \
-    basefilesdatamodel.cpp \
-    filemanager.cpp \
-    settings.cpp \
-    client.cpp \
-    localfilesdatamodel.cpp \
-    jsonhelper.cpp \
-    remotefilesdatamodel.cpp \
+    Yandex_translator/blocks_data_model.cpp \
+    Yandex_translator/block.cpp \
+    Yandex_translator/yandex_api_connection.cpp \
+    Yandex_translator/yandex_api_parser.cpp \
+    Words_models/words_data_model.cpp \
+    Words_models/word.cpp \
+    File_models/basefilesdatamodel.cpp \
+    File_models/filemanager.cpp \
+    Server_connection/settings.cpp \
+    Server_connection/client.cpp \
+    File_models/localfilesdatamodel.cpp \
+    Server_connection/jsonhelper.cpp \
+    File_models/remotefilesdatamodel.cpp \
     test_words.cpp \
-    search_history_data_model.cpp
+    Words_models/search_history_data_model.cpp
 
 RESOURCES += qml.qrc
 
@@ -56,21 +56,21 @@ DISTFILES += \
     android/gradlew.bat
 
 HEADERS += \
-    blocks_data_model.h \
-    block.h \
-    yandex_api_connection.h \
-    yandex_api_parser.h \
-    words_data_model.h \
-    word.h \
-    basefilesdatamodel.h \
-    filemanager.h \
-    settings.h \
-    client.h \
-    jsonhelper.h \
-    localfilesdatamodel.h \
-    remotefilesdatamodel.h \
+    Yandex_translator/blocks_data_model.h \
+    Yandex_translator/block.h \
+    Yandex_translator/yandex_api_connection.h \
+    Yandex_translator/yandex_api_parser.h \
+    Words_models/words_data_model.h \
+    Words_models/word.h \
+    File_models/basefilesdatamodel.h \
+    File_models/filemanager.h \
+    Server_connection/settings.h \
+    Server_connection/client.h \
+    Server_connection/jsonhelper.h \
+    File_models/localfilesdatamodel.h \
+    File_models/remotefilesdatamodel.h \
     test_words.h \
-    search_history_data_model.h
+    Words_models/search_history_data_model.h
 
 contains(ANDROID_TARGET_ARCH,armeabi-v7a) {
     ANDROID_EXTRA_LIBS = \

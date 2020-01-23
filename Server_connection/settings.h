@@ -7,7 +7,7 @@
 #include <QVariantMap>
 #include <QJsonArray>
 #include <QDebug>
-#include "filemanager.h"
+#include "File_models/filemanager.h"
 
 class Settings: public QObject
 {

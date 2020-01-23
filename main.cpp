@@ -1,13 +1,13 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include "blocks_data_model.h"
-#include "localfilesdatamodel.h"
-#include "remotefilesdatamodel.h"
-#include "words_data_model.h"
-#include "settings.h"
-#include "client.h"
+#include "Yandex_translator/blocks_data_model.h"
+#include "File_models/localfilesdatamodel.h"
+#include "File_models/remotefilesdatamodel.h"
+#include "Words_models/words_data_model.h"
+#include "Server_connection/settings.h"
+#include "Server_connection/client.h"
 #include "test_words.h"
-#include "search_history_data_model.h"
+#include "Words_models/search_history_data_model.h"
 
 int main(int argc, char *argv[])
 {
