@@ -22,8 +22,27 @@ Item {
             id: back_btn
         }
         Menu_bar_item {
+            id: my_files_menu_bar_item
             img.source: "qrc:/icons/my_files_icon.svg"
-            mouse_area.onClicked: file_menu.open()
+            mouse_area.onClicked: {
+                scale_anim.start()
+                file_menu.open()
+            }
+            SequentialAnimation {
+                id: scale_anim
+                ScaleAnimator {
+                    target: my_files_menu_bar_item.img
+                    duration: 100
+                    from: 1
+                    to: 0.9
+                }
+                ScaleAnimator {
+                    target: my_files_menu_bar_item.img
+                    duration: 100
+                    from: 0.9
+                    to: 1
+                }
+            }
             Menu {
                 id: file_menu
                 y: parent.height

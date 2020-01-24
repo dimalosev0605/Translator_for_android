@@ -42,8 +42,7 @@ public:
 
 public slots:
     void add_word(const QString& w, const QString& tr, const QString& m, const QString& syns);
-    void set_file_name(const QString& name);
-    void open_file();
+    bool open_file(const QString& file_name);
     void remove_word(int index);
     bool save_words_and_clear_internal_padding();
     int find_word(const QString& word);

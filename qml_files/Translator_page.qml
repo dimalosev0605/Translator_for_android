@@ -36,7 +36,7 @@ Item {
         id: words_page_comp
         Words_page {
             id: words_page
-            interface_flag: 1
+            interface_flag: 1 // 1 means not 4.
         }
     }
     Component {
@@ -237,7 +237,7 @@ Item {
         border.width: 1
         border.color: "black"
         width: parent.width * 0.7
-        height: parent.height * 0.25
+        height: parent.height * 0.2 > 30 ? parent.height * 0.2 : 30
         radius: 20
 
         Slider {
@@ -253,7 +253,7 @@ Item {
             to: (blocks_list_view.height - blocks_list_view.spacing * 3) / 4 / 3
             stepSize: 1
             onValueChanged: blocks_list_view.text_height = value
-            onPressedChanged: pressed ? slider_frame.opacity = 0.2 : slider_frame.opacity = 1
+            onPressedChanged: pressed ? slider_frame.opacity = 0.1 : slider_frame.opacity = 1
         }
         Image {
             id: close_font_size_menu_btn

@@ -80,34 +80,24 @@ void Words_data_model::add_word(const QString &w, const QString &tr, const QStri
     endInsertRows();
 }
 
-void Words_data_model::set_file_name(const QString &name)
-{
-    file_name = name;
-}
-
-
 Words_data_model::~Words_data_model()
 {
     if(is_save) save_words();
 }
 
-void Words_data_model::open_file()
+bool Words_data_model::open_file(const QString& file_name)
 {
     if(!words.isEmpty()) words.clear();
+    this->file_name = file_name;
     FileManager file_manager;
     QFile file(file_manager.get_file_path(file_name));
     if(file.open(QIODevice::ReadOnly)) {
         QDataStream in(&file);
-        QVector<Word> temp;
-        in >> temp;
-        if(temp.isEmpty()) return;
+        in >> words;
         file.close();
-
-        beginInsertRows(QModelIndex(), words.size(), words.size() + temp.size() - 1);
-        words.reserve(words.size() + temp.size() + 50); // I estimate average user input per session in 50.
-        std::move(temp.begin(), temp.end(), std::back_inserter(words));
-        endInsertRows();
+        return true;
     }
+    return false;
 }
 
 void Words_data_model::remove_word(int index)

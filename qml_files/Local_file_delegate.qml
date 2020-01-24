@@ -13,7 +13,7 @@ Item {
     // 2 - interface in my_files_page
     // 3 - interface in cloud_page
     // 4 - interface in test_page
-    property int interface_flag: 1
+    property int interface_flag
 
     Row {
         id: row
@@ -100,18 +100,22 @@ Item {
                 anchors.fill: parent
                 onClicked: {
                     if(interface_flag === 1) {
-                        show_hide_line_edits_btn.visible = true
-                        menu_bar.open_menu_item.enabled = false
-                        menu_bar.save_menu_item.enabled = true
-                        menu_bar.show_words_item.enabled = true
-                        words_data_model.set_file_name(local_files_data_model.get_file_name(index))
-                        words_data_model.open_file()
-                        stack_view.pop()
+                        // words_data_model in Translator_page.
+                        if(words_data_model.open_file(local_files_data_model.get_file_name(index))) {
+                            show_hide_line_edits_btn.visible = true
+                            menu_bar.open_menu_item.enabled = false
+                            menu_bar.save_menu_item.enabled = true
+                            menu_bar.show_words_item.enabled = true
+                            stack_view.pop()
+                        }
+                        return
                     }
                     if(interface_flag === 2) {
-                        words_data_model.set_file_name(local_files_data_model.get_file_name(index))
-                        words_data_model.open_file()
-                        stack_view.push(words_page_comp)
+                        // words_data_model in My_files_page.
+                        if(words_data_model.open_file(local_files_data_model.get_file_name(index))) {
+                            stack_view.push(words_page_comp)
+                        }
+                        return
                     }
                     if(interface_flag === 3) {
                         if(busy_indicator.visible) return
@@ -124,22 +128,23 @@ Item {
                     }
                     if(interface_flag === 4) {
                         if(test_words.open_file(local_files_data_model.get_file_name(index))) {
-                            words_data_model.set_file_name(local_files_data_model.get_file_name(index))
-                            words_data_model.open_file()
-                            stack_view.push(words_page_comp)
+                            if(words_data_model.open_file(local_files_data_model.get_file_name(index))) {
+                                stack_view.push(words_page_comp)
+                            }
                         }
                     }
                 }
             }
         }
         Rectangle {
+            // this elem appears only in my_files_page
             id: delete_btn
             border.width: 1
             border.color: "black"
             height: root.height
-            width: open_btn.width
+            width: interface_flag === 2 ? open_btn.width : 0
+            visible: interface_flag === 2 ? true : false
             color: enabled ? delete_btn_m_area.pressed ? "#ff0000" : "white" : "#cfcfcf"
-            enabled: interface_flag === 2 ? true : false
             Text {
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
@@ -156,8 +161,6 @@ Item {
                 id: delete_btn_m_area
                 anchors.fill: parent
                 onClicked: {
-                    if(interface_flag !== 2) return
-                    // delete only if interface_flag == 2.
                     local_files_data_model.delete_file(index)
                 }
             }

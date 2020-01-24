@@ -22,7 +22,15 @@ Item {
         anchors.leftMargin: 5
         anchors.top: back_btn.top
         img.source: "qrc:/icons/settings_btn_icon.svg"
+        RotationAnimation {
+            id: rotation_anim
+            target: options_btn.img
+            duration: 1000
+            from: 0
+            to: 360
+        }
         mouse_area.onClicked: {
+            rotation_anim.start()
             if(!options_field.visible) {
                 options_field.visible = true
                 scroll_view.anchors.top = options_field.bottom

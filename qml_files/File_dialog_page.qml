@@ -81,15 +81,17 @@ Item {
             id: m_area
             anchors.fill: parent
             onClicked: {
+                // local_files_data_model in this file.
+                // words_data_model in translator_page.
                 if(file_name_field.text === "") return
                 if(local_files_data_model.create_file(file_name_field.text)) {
-                    show_hide_line_edits_btn.visible = true
-                    menu_bar.open_menu_item.enabled = false
-                    menu_bar.save_menu_item.enabled = true
-                    menu_bar.show_words_item.enabled = true
-                    words_data_model.set_file_name(file_name_field.text)
-                    words_data_model.open_file()
-                    stack_view.pop()
+                    if(words_data_model.open_file(file_name_field.text)) {
+                        show_hide_line_edits_btn.visible = true
+                        menu_bar.open_menu_item.enabled = false
+                        menu_bar.save_menu_item.enabled = true
+                        menu_bar.show_words_item.enabled = true
+                        stack_view.pop()
+                    }
                 }
             }
         }

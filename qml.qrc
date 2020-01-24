@@ -30,5 +30,6 @@
         <file>icons/previous_arr.svg</file>
         <file>qml_files/Search_history_page.qml</file>
         <file>qml_files/History_word_delegate.qml</file>
+        <file>icons/bidirectional_arrow.svg</file>
     </qresource>
 </RCC>

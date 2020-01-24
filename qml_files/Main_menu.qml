@@ -12,8 +12,8 @@ Item {
         id: column
         anchors.centerIn: parent
         spacing: 10
-        property int button_width: parent.width / 3
-        property int button_height: parent.height / 10
+        property int button_width: parent.width * 0.25
+        property int button_height: parent.height * 0.07
         Main_menu_btn {
             id: translator_btn
             text: "Translator"
