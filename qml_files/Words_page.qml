@@ -6,7 +6,7 @@ Item {
 
     property int interface_flag
     property alias start_btn_text: start_btn_text
-    // 4 - interface for test page
+    // 4 - interface for test page, any other number - for my_files_page or translator_page.
 
     Back_btn {
         id: back_btn
@@ -41,7 +41,7 @@ Item {
             }
         }
     }
-    //
+
     Rectangle {
         id: options_field
         visible: false
@@ -64,12 +64,20 @@ Item {
             width: options_field.width * 0.4
             height: 30
             inputMethodHints: Qt.ImhNoPredictiveText
-            placeholderText: "Find word"
+            placeholderText: "Search"
             property int word_orrences_count: 0
             onTextChanged: {
                 word_orrences_count = words_data_model.find_word(find_text_field.text)
                 info_about_searching.curr_idx = words_data_model.get_curr_index()
-                words_list_view.currentIndex = words_data_model.get_first_occurence_index()
+                if(words_data_model.get_first_occurence_index() === -1) {
+                    if(words_list_view.currentIndex !== -1) {
+                        words_list_view.currentItem.focus = false
+                        words_list_view.currentIndex = -1
+                    }
+                }
+                else {
+                    words_list_view.currentIndex = words_data_model.get_first_occurence_index()
+                }
             }
             Keys.onReturnPressed: {
                 Qt.inputMethod.hide();
@@ -211,10 +219,9 @@ Item {
         }
 
     }
-    //
 
     Rectangle {
-        // if interface == 4
+        // item visible only if interface == 4.
         id: start_btn
         visible: interface_flag === 4 ? true : false
         color: mouse_area.pressed ? "#00ff00" : "white"
@@ -239,7 +246,7 @@ Item {
             elide: Text.ElideRight
             wrapMode: Text.WordWrap
             color: mouse_area.pressed ? "#000000" : count < 4 ? "#ff0000" : "#00ff00"
-            property string default_text: "Start "
+            property string default_text: "Start"
             property int count: interface_flag === 4 ? test_words.get_words_count() : 0
             text : default_text + count
         }

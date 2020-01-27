@@ -4,25 +4,16 @@ import QtQuick.Controls 2.4
 Rectangle {
     id: root
     width: words_list_view.width
-    height: (words_list_view.height - 9 * words_list_view.spacing) / 10
+    height: (words_list_view.height - 7 * words_list_view.spacing) / 8
     border.width: 1
     border.color: "black"
 
     onFocusChanged: {
         if(focus) {
-            root.color = "yellow"
+            color = "yellow"
         }
         else {
-            if(interface_flag === 4) {
-                if(test_words.get_idx(index))
-                    root.color = "#00ff00"
-                else
-                    root.color = "white"
-                color: interface_flag === 4 ? test_words.get_idx(index) ? "#00ff00" : "white" : "white"
-            }
-            else {
-                root.color = "white"
-            }
+            color = interface_flag === 4 ? test_words.get_idx(index) ? "#00ff00" : "white" : "white"
         }
     }
 
@@ -42,8 +33,6 @@ Rectangle {
         anchors.fill: parent
         visible: interface_flag === 4 ? true : false
         onClicked: {
-//            console.log("index = " + index)
-            // if user choose all words by hand -> pizda...
             if(test_words.set_idx(index)) {
                 if(test_words.get_words_count() === words_page.start_btn_text.count)
                     words_page.start_btn_text.count = 0
