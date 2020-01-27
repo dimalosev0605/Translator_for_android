@@ -6,7 +6,7 @@
 #include "Words_models/words_data_model.h"
 #include "Server_connection/settings.h"
 #include "Server_connection/client.h"
-#include "test_words.h"
+#include "User_testing/test_words.h"
 #include "Words_models/search_history_data_model.h"
 
 int main(int argc, char *argv[])

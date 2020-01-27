@@ -37,9 +37,7 @@ void Search_history_data_model::load_history_from_external_memory()
         if(temp.isEmpty()) return;
         file.close();
 
-//        beginInsertRows(QModelIndex(), words_history.size(), words_history.size() + temp.size() - 1);
         std::move(temp.begin(), temp.end(), std::back_inserter(words_history));
-//        endInsertRows();
     }
 }
 
@@ -80,15 +78,8 @@ Search_history_data_model::~Search_history_data_model()
 
 void Search_history_data_model::push_front(const QString &w, const QString &transcription, const QString &mean)
 {
-//    qDebug() << "###############\n";
-//    qDebug() << w;
-//    qDebug() << transcription;
-//    qDebug() << mean;
-//    qDebug() << "###############\n";
-//    beginInsertRows(QModelIndex(), 0, 0);
     if(w.isEmpty()) return;
     words_history.push_front(Word(w, transcription, mean, QString()));
-//    endInsertRows();
 }
 
 void Search_history_data_model::remove(int index)

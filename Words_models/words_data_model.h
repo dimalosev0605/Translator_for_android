@@ -2,7 +2,6 @@
 #define WORDS_DATA_MODEL_H
 
 #include <QAbstractListModel>
-#include <QDebug>
 #include <QVector>
 #include <QDataStream>
 #include "word.h"

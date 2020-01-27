@@ -3,7 +3,6 @@
 
 
 #include <QObject>
-#include <QDebug>
 #include <QTcpSocket>
 #include <QHostInfo>
 #include <QHostAddress>

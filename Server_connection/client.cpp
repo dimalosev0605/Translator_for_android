@@ -100,7 +100,6 @@ void Client::process_data()
 
 void Client::action()
 {
-    qDebug() << "Token = " << static_cast<int>(token);
     switch (token)
     {
     case JSonHelper::Token::success_sing_in: {
@@ -182,7 +181,6 @@ void Client::save_file()
 
 void Client::connected()
 {
-    qDebug() << this << " connected";
     Settings settings;
     if(!settings.get_user_name().isEmpty()) {
         get_list_of_files();
@@ -194,12 +192,10 @@ void Client::connected()
 
 void Client::disconnected()
 {
-    qDebug() << this << " disconnected";
 }
 
 void Client::ready_read()
 {
-    qDebug() << this << " ready read";
     qint64 bytes_available = socket.bytesAvailable();
     data += socket.read(bytes_available);
     process_data();
@@ -207,12 +203,10 @@ void Client::ready_read()
 
 void Client::bytes_written(qint64 bytes)
 {
-    qDebug() << this << " bytes written " << bytes << " bytes";
 }
 
 void Client::stateChanged(QAbstractSocket::SocketState socketState)
 {
-    qDebug() << this << " state changed to " << socketState;
     switch (socketState) {
     case QAbstractSocket::SocketState::HostLookupState:
     {
@@ -243,12 +237,10 @@ void Client::stateChanged(QAbstractSocket::SocketState socketState)
 
 void Client::hostFound()
 {
-    qDebug() << this << " host found";
 }
 
 void Client::error(QAbstractSocket::SocketError socketError)
 {
-    qDebug() << this << " error " << socketError;
     switch (socketError) {
     case QAbstractSocket::SocketError::ConnectionRefusedError:
     {
@@ -263,7 +255,6 @@ void Client::search_host(const QHostInfo& host_info)
     auto server_ips = host_info.addresses();
     if(!server_ips.isEmpty()) {
         server_ip = server_ips.first().toString();
-        qDebug() << "server_ip = " << server_ip;
         emit finished_searching_host();
     }
 }

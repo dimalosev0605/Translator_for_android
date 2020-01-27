@@ -7,7 +7,6 @@
 #include <QVariantMap>
 #include <QJsonArray>
 #include <QVector>
-#include <QDebug>
 #include "block.h"
 
 class Yandex_api_parser

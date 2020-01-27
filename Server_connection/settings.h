@@ -6,7 +6,6 @@
 #include <QJsonObject>
 #include <QVariantMap>
 #include <QJsonArray>
-#include <QDebug>
 #include "File_models/filemanager.h"
 
 class Settings: public QObject

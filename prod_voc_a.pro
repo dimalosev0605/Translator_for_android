@@ -30,7 +30,7 @@ SOURCES += \
     File_models/localfilesdatamodel.cpp \
     Server_connection/jsonhelper.cpp \
     File_models/remotefilesdatamodel.cpp \
-    test_words.cpp \
+    User_testing/test_words.cpp \
     Words_models/search_history_data_model.cpp
 
 RESOURCES += qml.qrc
@@ -69,7 +69,7 @@ HEADERS += \
     Server_connection/jsonhelper.h \
     File_models/localfilesdatamodel.h \
     File_models/remotefilesdatamodel.h \
-    test_words.h \
+    User_testing/test_words.h \
     Words_models/search_history_data_model.h
 
 contains(ANDROID_TARGET_ARCH,armeabi-v7a) {
