@@ -41,6 +41,22 @@ Item {
             }
         }
     }
+    Text {
+        id: info_lbl
+        text: "Choose words for testing"
+        visible: interface_flag === 4 ? true : false
+        anchors.left: options_btn.right
+        anchors.top: options_btn.top
+        anchors.right: start_btn.left
+        height: options_btn.height
+        verticalAlignment: Text.AlignVCenter
+        horizontalAlignment: Text.AlignHCenter
+        fontSizeMode: Text.Fit
+        minimumPointSize: 5
+        font.pointSize: 10
+        elide: Text.ElideRight
+        wrapMode: Text.WordWrap
+    }
 
     Rectangle {
         id: options_field

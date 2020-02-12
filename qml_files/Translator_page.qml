@@ -61,6 +61,22 @@ Item {
 
     property int clear_icon_height: 24
 
+    SequentialAnimation {
+        id: clear_fields_anim
+        ScaleAnimator {
+            id: increase_scale_anim
+            from: 1
+            to: 1.1
+            duration: 200
+        }
+        ScaleAnimator {
+            id: decrease_scale_anim
+            from: 1.1
+            to: 1
+            duration: 200
+        }
+    }
+
     TextField {
         id: user_input_field
         width: (translator_page.width - anchors.leftMargin * 3) * 0.75 - clear_uif_btn.width
@@ -85,7 +101,12 @@ Item {
             source: "qrc:/icons/clear_icon.svg"
             MouseArea {
                 anchors.fill: parent
-                onClicked: user_input_field.clear()
+                onClicked: {
+                    user_input_field.clear()
+                    increase_scale_anim.target = clear_uif_btn
+                    decrease_scale_anim.target = clear_uif_btn
+                    clear_fields_anim.start()
+                }
             }
         }
         Keys.onReturnPressed: {
@@ -117,7 +138,12 @@ Item {
             source: "qrc:/icons/clear_icon.svg"
             MouseArea {
                 anchors.fill: parent
-                onClicked: means_field.clear()
+                onClicked: {
+                    means_field.clear()
+                    increase_scale_anim.target = clear_mf_btn
+                    decrease_scale_anim.target = clear_mf_btn
+                    clear_fields_anim.start()
+                }
             }
         }
         Keys.onReturnPressed: {
@@ -147,7 +173,12 @@ Item {
             source: "qrc:/icons/clear_icon.svg"
             MouseArea {
                 anchors.fill: parent
-                onClicked: translations_filed.clear()
+                onClicked: {
+                    translations_filed.clear()
+                    increase_scale_anim.target = clear_tf_btn
+                    decrease_scale_anim.target = clear_tf_btn
+                    clear_fields_anim.start()
+                }
             }
         }
         Keys.onReturnPressed: {
